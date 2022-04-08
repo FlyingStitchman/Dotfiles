@@ -1,0 +1,40 @@
+{
+    "layer": "top",
+    "height": 30,
+    "modules-left": [],
+    "modules-center": ["clock"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "tray"],
+    "sway/window": {
+        "max-length": 50
+    },
+    "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+    "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+        "activated": "",
+        "deactivated": ""
+    	}
+    },
+    "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["🎜"]
+        },
+    "scroll-step": 1,
+    "on-click": "pavucontrol"
+    },
+    "tray": {
+    "icon-size": 21,
+    "spacing": 10
+    }
+}

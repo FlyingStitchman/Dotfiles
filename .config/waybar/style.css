@@ -1,0 +1,83 @@
+
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Roboto, "Font Awesome 5 Free";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(0,0,0, 0.5);
+    border-bottom: 3px solid transparent;
+    color: white;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    margin: 0 3px;
+    color: white;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: rgba(100, 114, 125, 0.2);
+    border-bottom: 3px solid @color15;
+}
+
+#mode {
+    background: transparent;
+    border-bottom: 3px solid @color15;
+}
+
+#clock, #cpu, #memory, #network, #pulseaudio, #temperature, #backlight, #idle_inhibitor {
+    padding: 0 6px;
+    margin: 0 5px;
+}
+
+#clock {
+    background-color: transparent;
+    color: white;
+}
+
+@keyframes blink {
+    to {
+        background-color: rgba(1, 1, 1, 0);
+    }
+}
+
+#cpu {
+    background: transparent;
+    border-bottom: 3px solid @color5;
+    color: white;
+}
+
+#memory {
+    background: transparent;
+    border-bottom: 3px solid @color7;
+    color: white;
+}
+
+#network {
+    background: transparent;
+    color: white
+}
+
+#network.disconnected {
+    background: transparent;
+    color: crimson;
+}
+
+#pulseaudio {
+    background: transparent;
+    color: white;
+}
+
+#pulseaudio.muted {
+    border-bottom: 3px solid @color1
+}
+
+#tray {
+    background-color: transparent;
+}
