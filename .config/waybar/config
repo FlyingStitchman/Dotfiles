@@ -1,40 +1,101 @@
 {
-    "layer": "top",
-    "height": 30,
-    "modules-left": [],
-    "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "tray"],
-    "sway/window": {
-        "max-length": 50
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock", "idle_inhibitor"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "battery", "custom/power", "custom/menu"],
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
     },
-    "clock": {
-    "format-alt": "{:%a, %d. %b  %H:%M}"
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "", 
+        "max-length": 50,
+        "on-click": "kitty -e 'nmtui'"
     },
     "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-        "activated": "",
-        "deactivated": ""
-    	}
-    },
-    "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon}",
-    "format-muted": "",
-    "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["🎜"]
-        },
-    "scroll-step": 1,
-    "on-click": "pavucontrol"
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
     },
     "tray": {
-    "icon-size": 21,
-    "spacing": 10
+        "icon-size": 15,
+        "spacing": 10
+    },
+    "clock": {
+        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        // "format-alt": "{:%Y-%m-%d}"
+		"on-click": "gnome-calendar"
+    },
+    // "cpu": {
+    //     "format": "{usage}% ",
+    //     "tooltip": false
+    // },
+    // "memory": {
+    //     "format": "{}% "
+    // },
+    //"temperature": {
+    //    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    //    "critical-threshold": 82,
+    //    "format-critical": "{temperatureC}°C {icon}",
+    //    "format": "{temperatureC}°C {icon}",
+    //    "format-icons": [""]
+    //},
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} ",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "0% {icon} ",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+	"custom/power": {
+		"format": "",
+		"on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Restart' 'shutdown -r now' -b 'Shutdown'  'shutdown -h now' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
+	},
+	// "custom/example_runscript_3 seconds": {
+	// 	"interval": 3,
+	// 	"exec": "/home/dg/.config/waybar/modules/menu_test.py",
+	// 	"format": "{}",
+	// },
+	// "custom/menu": {
+	// 	"format": "",
+	//  	"on-click": "/home/dg/.config/waybar/modules/menu_test.py",
+	// },
+    "custom/scratchpad-indicator": {
+        "format-text": "{}",
+        "return-type": "json",
+        "interval": 3,
+        "exec": "~/.local/bin/scratchpad-indicator 2> /dev/null",
+        "exec-if": "exit 0",
+        "on-click": "swaymsg 'scratchpad show'",
+        "on-click-right": "swaymsg 'move scratchpad'"
     }
 }
+
