@@ -31,6 +31,7 @@ set noincsearch
  " Plugs
 call plug#begin()
 Plug 'neovim/nvim-lspconfig'
+Plug 'mfussenegger/nvim-jdtls'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
